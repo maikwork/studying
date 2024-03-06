@@ -1,23 +1,13 @@
 const express = require('express')
+const routes = require('./router')
 
-const router = express.Router()
+const app = express()
 
-router.route('/user')
-    .get((req, res) => {
-        res.status(200).type('text/plain')
-        res.send('Hello kitty')
-    })
-    .post((req, res) => {
-        res.status(200).type('text/plain')
-        res.send('post kitty')
-    })
+const host = '127.0.0.1'
+const port = 7000
 
-router.route('/mem')
-    .get((req, res) => {
-        res.status(200).type('text/plain')
-        res.send('Я родился')
-    })
-    .delete((req, res) => {
-        res.status(200).type('text/plain')
-        res.send('Они убили кенни')
-    })
+app.use('/api', routes)
+
+app.listen(port, host, () => {
+    console.log('Server listen on', port)
+})
